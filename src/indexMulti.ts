@@ -2,16 +2,11 @@ import cluster, { Worker } from 'cluster';
 import os from 'os';
 import http from 'http';
 import path from 'path';
-
-import 'dotenv/config';
 import { fileURLToPath } from 'url';
+import { ChildServer } from './models/child-server-interface';
+import 'dotenv/config';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-interface ChildServer {
-    host: string;
-    port: number;
-}
 
 cluster.setupPrimary({ exec: path.join(__dirname, 'index.js') });
 
