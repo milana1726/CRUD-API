@@ -3,8 +3,10 @@ import 'dotenv/config';
 import { getAllUsers } from './controllers/getAllUsers.js';
 import { createUser } from './controllers/createUser.js';
 import { getUser } from './controllers/getUser.js';
+import { updateUser } from './controllers/updateUser.js';
 import { StatusCodes, StatusMessages } from './models/constants.js';
 import { consoleResponse } from './utils/consoleResponse.js';
+import { deleteUser } from './controllers/deleteUser.js';
 
 const server = http.createServer((req, res) => {
     try {
@@ -18,6 +20,14 @@ const server = http.createServer((req, res) => {
 
         if (req.method === 'POST' && req.url === '/api/users') {
             return createUser(req, res);
+        }
+
+        if (req.method === 'PUT' && req.url?.startsWith('/api/users/')) {
+            return updateUser(req, res);
+        }
+
+        if (req.method === 'DELETE' && req.url?.startsWith('/api/users/')) {
+            return deleteUser(req, res);
         }
 
         res.writeHead(StatusCodes.NOT_FOUND, {

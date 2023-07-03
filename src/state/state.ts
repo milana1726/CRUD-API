@@ -1,3 +1,9 @@
+/* eslint-disable prefer-const */
 import { User } from '../models/user-interface';
 
-export const state: User[] = [];
+export let state: User[] = [];
+
+export const updateState = (newState: User[]) => {
+    state = newState;
+};
+
