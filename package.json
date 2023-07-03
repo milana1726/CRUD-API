@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "build": "npx rimraf ./build && npx tsc",
-    "start:dev": "nodemon",
+    "start:dev": "npx rimraf ./build && nodemon",
     "start:prod": "npm run build && node  ./build/index.js",
     "start:multi": "npm run build && node  ./build/indexMulti.js",
-    "test": "jest",
+    "test": "npx rimraf ./build && jest",
     "lint": "npx eslint",
     "lint:fix": "npx eslint --fix",
     "format": "prettier src/**/*.ts --write"

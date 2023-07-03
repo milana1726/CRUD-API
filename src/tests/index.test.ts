@@ -52,7 +52,6 @@ describe('Scenario 1 - Operations with correct data', () => {
     });
 
     it('should get user by id, GET request by id', async () => {
-        console.log(testUserWithId.id);
         const response = await supertest(serverUrl).get(
             apiUrl + '/' + testUserWithId.id,
         );
