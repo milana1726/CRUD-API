@@ -15,5 +15,5 @@ export const enum StatusMessages {
     NO_CONTENT = 'There is no content. User deleted',
     BAD_REQUEST = 'Bad Request',
     NOT_FOUND = 'Not Found',
-    INTERNAL_SERVER = 'Internal Server Error. ',
+    INTERNAL_SERVER = 'Internal Server Error',
 }
