@@ -7,8 +7,21 @@ import { updateUser } from './controllers/updateUser.js';
 import { StatusCodes, StatusMessages } from './models/constants.js';
 import { consoleResponse } from './utils/consoleResponse.js';
 import { deleteUser } from './controllers/deleteUser.js';
+import cluster, { Worker } from 'cluster';
+
+const isOneServer = process.env.NODE_UNIQUE_ID === '0';
+const isPrimaryServer = cluster.isPrimary && !isOneServer;
 
 const server = http.createServer((req, res) => {
+    const { method, url } = req;
+    const worker = cluster.worker as Worker | undefined;
+
+    if (!isPrimaryServer) {
+        console.log(
+            `Request: ${method} ${url} - Worker #${worker?.process.pid} on port ${process.env.PORT}`,
+        );
+    }
+
     try {
         if (req.method === 'GET' && req.url === '/api/users') {
             return getAllUsers(req, res);
@@ -61,9 +74,17 @@ const server = http.createServer((req, res) => {
     }
 });
 
-server.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}`);
-});
+if (isOneServer) {
+    server.listen(process.env.PORT, () => {
+        console.log(`Server is running on port ${process.env.PORT}`);
+    });
+} else {
+    server.listen(process.env.PORT, () => {
+        if (isPrimaryServer) {
+            console.log(`Server is running on port ${process.env.PORT}`);
+        }
+    });
+}
 
 process.on('SIGINT', () => {
     console.log('Shutting down from SIGINT (Ctrl+C)');

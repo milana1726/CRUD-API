@@ -5,10 +5,13 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
+    "build": "npx rimraf ./build && npx tsc",
     "start:dev": "nodemon",
+    "start:prod": "npm run build && node  ./build/index.js",
+    "start:multi": "npm run build && node  ./build/indexMulti.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix",
+    "lint": "npx eslint",
+    "lint:fix": "enpx eslint --fix",
     "format": "prettier src/**/*.ts --write"
   },
   "repository": {

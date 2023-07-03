@@ -4,9 +4,8 @@ import { StatusCodes, StatusMessages } from '../models/constants.js';
 import { consoleResponse } from '../utils/consoleResponse.js';
 import { User } from '../models/user-interface.js';
 
-
 process.on('message', (newState: User[]) => {
-  updateState(newState);
+    updateState(newState);
 });
 
 export const getAllUsers = (req: IncomingMessage, res: ServerResponse) => {

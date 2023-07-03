@@ -6,4 +6,3 @@ export let state: User[] = [];
 export const updateState = (newState: User[]) => {
     state = newState;
 };
-
