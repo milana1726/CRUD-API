@@ -9,4 +9,4 @@ export const getAllUsers = (req: IncomingMessage, res: ServerResponse) => {
     });
     res.end(JSON.stringify(state));
     consoleResponse(StatusCodes.OK, StatusMessages.OK);
-}
+};

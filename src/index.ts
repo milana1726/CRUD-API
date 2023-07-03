@@ -1,6 +1,8 @@
 import http from 'http';
 import 'dotenv/config';
 import { getAllUsers } from './controllers/getAllUsers.js';
+import { createUser } from './controllers/createUser.js';
+import { getUser } from './controllers/getUser.js';
 import { StatusCodes, StatusMessages } from './models/constants.js';
 import { consoleResponse } from './utils/consoleResponse.js';
 
@@ -8,6 +10,14 @@ const server = http.createServer((req, res) => {
     try {
         if (req.method === 'GET' && req.url === '/api/users') {
             return getAllUsers(req, res);
+        }
+
+        if (req.method === 'GET' && req.url?.startsWith('/api/users/')) {
+            return getUser(req, res);
+        }
+
+        if (req.method === 'POST' && req.url === '/api/users') {
+            return createUser(req, res);
         }
 
         res.writeHead(StatusCodes.NOT_FOUND, {
@@ -22,17 +32,22 @@ const server = http.createServer((req, res) => {
         );
         consoleResponse(StatusCodes.NOT_FOUND, StatusMessages.NOT_FOUND);
     } catch (err) {
-        res.writeHead(StatusCodes.INTERNAL_SERVER, {
+        res.writeHead(StatusCodes.INTERNAL_SERVER_ERROR, {
             'Contenty-Type': 'application/json',
         });
 
         res.end(
             JSON.stringify({
-                code: StatusCodes.INTERNAL_SERVER,
-                message: StatusMessages.INTERNAL_SERVER,
+                code: StatusCodes.INTERNAL_SERVER_ERROR,
+                message: StatusMessages.INTERNAL_SERVER_ERROR,
             }),
         );
-        consoleResponse(StatusCodes.INTERNAL_SERVER, StatusMessages.INTERNAL_SERVER);
+        console.log('Something went wrong...');
+        console.error(err);
+        consoleResponse(
+            StatusCodes.INTERNAL_SERVER_ERROR,
+            StatusMessages.INTERNAL_SERVER_ERROR,
+        );
     }
 });
 
