@@ -11,7 +11,7 @@ Switch to the branch ***task4-simple-crud-api***
 Run `npm install` for installing dependencies.
 
 ## Start application
-Run one of the modes below, then go to https://www.postman.com/ and send requests.
+Run one of the modes below, then go to https://www.postman.com/ and send requests.   
 You can set PORT variable in `.env` file (*by default:* `PORT=4000`).
 
 ### 1. Development mode
@@ -46,7 +46,7 @@ Server runs on `http://localhost:4000`.
 
 ![image](https://github.com/milana1726/CRUD-API/assets/80005415/fa7420d7-372c-425c-a38d-0dc1e5125a0b)
 
-***Update user*** -> *PUT* http:/localhost:4000/api/users/${userId} + body raw JSON 
+***Update user*** -> *PUT* http://localhost:4000/api/users/${userId} + body raw JSON 
 ```
 {
     "username": "User Hello",
