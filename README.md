@@ -63,5 +63,5 @@ Run `npm run build` to build the project.
 The build files will be stored in the `build/` directory.
 
 ## Tests
-Run `npm start:dev` to start the server.  
+Run `npm run start:dev` to start the server.  
 Then run `npm run test` to execute the tests.
