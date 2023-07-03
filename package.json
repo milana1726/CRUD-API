@@ -11,7 +11,7 @@
     "start:multi": "npm run build && node  ./build/indexMulti.js",
     "test": "jest",
     "lint": "npx eslint",
-    "lint:fix": "enpx eslint --fix",
+    "lint:fix": "npx eslint --fix",
     "format": "prettier src/**/*.ts --write"
   },
   "repository": {

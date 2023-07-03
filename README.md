@@ -11,8 +11,8 @@ Switch to the branch ***task4-simple-crud-api***
 Run `npm install` for installing dependencies.
 
 ## Start application
-Run one of modes below, then go to https://www.postman.com/ and send requests.  
-You can set PORT variable in `src/.env` file (*by default:* `PORT=4000`).  
+Run one of the modes below, then go to https://www.postman.com/ and send requests.
+You can set PORT variable in `.env` file (*by default:* `PORT=4000`).
 
 ### 1. Development mode
 
